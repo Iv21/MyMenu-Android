@@ -52,13 +52,12 @@ public class MainActivity2 extends AppCompatActivity {
         //prices.add("60");
         //  prices.add("80");
         //  prices.add("70");
+        //  prices.add("70");
         //  prices.add("90");
-        //  prices.add("70");
-        //  prices.add("130");
-        //  prices.add("70");
-        //  prices.add("70");
-        //   prices.add("100");
-        //   prices.add("100");
+        //  prices.add("110");
+        //  prices.add("120");
+        //  prices.add("100");
+        //   prices.add("130");
     }
 
     //SEARCH
