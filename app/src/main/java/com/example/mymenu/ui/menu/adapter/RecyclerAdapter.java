@@ -1,4 +1,4 @@
-package com.example.mymenu;
+package com.example.mymenu.ui.menu.adapter;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,18 +10,19 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mymenu.R;
+
 import java.util.List;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
     private static final String TAG = "RecyclerAdapter";
 
-    List<String> coffeeList;
-//List<String> coffeeListAll;
-//List<String> prices;
+    private final OnMenuItemClickListener clickListener;
+    private List<Product> coffeeList;
 
-    public RecyclerAdapter(List<String> coffeeList){
+    public RecyclerAdapter(OnMenuItemClickListener listener, List<Product> coffeeList){
+        this.clickListener = listener;
         this.coffeeList = coffeeList;
-        //  coffeeListAll = new ArrayList<>(coffeeList);
 
     }
 
@@ -46,15 +47,23 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        holder.textView.setText(coffeeList.get(position));
-        // holder.textView2.setText(prices.get(position));
-        //  holder.imageView.setImageDrawable();
+        final Product product = coffeeList.get(position);
+        holder.textView.setText(product.title);
+        holder.imageView.setImageResource(product.imageResId);
+        holder.rootView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clickListener.onMenuItemClick(product);
+            }
+        });
+
     }
 
     @Override
     public int getItemCount() {
         return coffeeList.size();
     }
+
 // filter za search
     //   @Override
     //   public Filter getFilter() {
@@ -92,12 +101,14 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
+        final View rootView;
         ImageView imageView;
         TextView textView,textView2;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            rootView =itemView.findViewById(R.id.itemRoot);
             imageView =itemView.findViewById(R.id.imageView);
             textView =itemView.findViewById(R.id.textView);
             textView2 = itemView.findViewById(R.id.textView);
@@ -106,3 +117,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     }
 
 }
+
+
+
+

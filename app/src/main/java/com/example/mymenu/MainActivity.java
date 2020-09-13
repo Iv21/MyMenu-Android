@@ -1,13 +1,13 @@
 package com.example.mymenu;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -81,33 +81,36 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void moveToActivityTwo(){
-        Intent intent = new Intent(MainActivity.this, MainActivity2.class);
+    private void moveToActivityTwo() {
+        Intent intent = new Intent(MainActivity.this, MenuActivity.class);
         startActivity(intent);
     }
-    private void moveToActivityThree(){
-        Intent intent = new Intent(MainActivity.this,MainActivity3.class);
+
+    private void moveToActivityThree() {
+        Intent intent = new Intent(MainActivity.this, MenuActivity.class);
         startActivity(intent);
     }
+
     @Override
-    protected  void onActivityResult (int requestCode, int resultCode, Intent data) {
-        callbackManager.onActivityResult(requestCode,resultCode, data);
-        super.onActivityResult(requestCode,resultCode, data);
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
     }
-    AccessTokenTracker tokenTracker = new AccessTokenTracker(){
+
+    AccessTokenTracker tokenTracker = new AccessTokenTracker() {
 
         @Override
         protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken currentAccessToken) {
-            if(currentAccessToken==null){
+            if (currentAccessToken == null) {
                 txtName.setText("");
                 circleImageView.setImageResource(0);
                 Toast.makeText(MainActivity.this, "User logged out", Toast.LENGTH_LONG).show();
-            }
-            else
+            } else
                 loaduserProfile(currentAccessToken);
         }
     };
-    private void loaduserProfile(AccessToken newAccessToken){
+
+    private void loaduserProfile(AccessToken newAccessToken) {
         GraphRequest request = GraphRequest.newMeRequest(newAccessToken, new GraphRequest.GraphJSONObjectCallback() {
             @Override
             public void onCompleted(JSONObject object, GraphResponse response) {
@@ -117,10 +120,10 @@ public class MainActivity extends AppCompatActivity {
                     String email = object.getString("email");
                     String id = object.getString("id");
 
-                    String image_url = "https://graph.facebook.com/"+id+"/picture?type=normal";
+                    String image_url = "https://graph.facebook.com/" + id + "/picture?type=normal";
 
                     //                  txtEmail.setText(email);
-                    txtName.setText(first_name+ " " + last_name);
+                    txtName.setText(first_name + " " + last_name);
 
                     RequestOptions requestOptions = new RequestOptions();
                     requestOptions.dontAnimate();
@@ -133,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         Bundle parametars = new Bundle();
-        parametars.putString("fields", "first_name, last_name, id" );
+        parametars.putString("fields", "first_name, last_name, id");
         request.setParameters(parametars);
         request.executeAsync();
 
