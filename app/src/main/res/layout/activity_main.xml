@@ -57,7 +57,7 @@
         android:layout_marginTop="65dp"
         android:layout_marginEnd="162dp"
         android:layout_marginBottom="243dp"
-        android:text="OpenMenu"
+        android:text="Click for More"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

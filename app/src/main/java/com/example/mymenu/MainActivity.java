@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private CallbackManager callbackManager;
 
     private Button menuButton;
+    private Button promotionsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,11 +48,18 @@ public class MainActivity extends AppCompatActivity {
 
         callbackManager = CallbackManager.Factory.create();
 
-        menuButton = findViewById(R.id.button2);
+        menuButton = findViewById(R.id.login_button);
         menuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 moveToActivityTwo();
+            }
+        });
+        promotionsButton = findViewById(R.id.button2);
+        promotionsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                moveToActivityThree();
             }
         });
 
@@ -77,7 +85,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, MainActivity2.class);
         startActivity(intent);
     }
-
+    private void moveToActivityThree(){
+        Intent intent = new Intent(MainActivity.this,MainActivity3.class);
+        startActivity(intent);
+    }
     @Override
     protected  void onActivityResult (int requestCode, int resultCode, Intent data) {
         callbackManager.onActivityResult(requestCode,resultCode, data);

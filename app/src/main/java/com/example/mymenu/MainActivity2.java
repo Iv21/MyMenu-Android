@@ -20,7 +20,6 @@ public class MainActivity2 extends AppCompatActivity {
 
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,13 +40,14 @@ public class MainActivity2 extends AppCompatActivity {
         coffeeList.add("Espresso");
         coffeeList.add("Large Macchiato");
         coffeeList.add("Small Macchiato");
+        coffeeList.add("Cappuccino");
         coffeeList.add("Nescafe");
-        coffeeList.add("Decaf");
+        coffeeList.add("Fredo Espresso");
+        coffeeList.add("Fredo Cappuccino");
+        coffeeList.add(" Latte");
         coffeeList.add("Irish");
-        coffeeList.add("Coca Cola");
-        coffeeList.add("Pepsi");
-        coffeeList.add("Skopsko");
-        coffeeList.add(" Zlaten Dab");
+
+
 
         //prices.add("60");
         //  prices.add("80");
